@@ -54,8 +54,12 @@ function App() {
     const amount = ethers.utils.parseEther(buyAmount.toString());
     const value = amount.div(lovePerZen);
     setBuyBtnString("💗");
-    const tx = await store.buyLove(amount, {value: value.toString()});
-    await tx.wait();
+    try {
+      const tx = await store.buyLove(amount, {value: value.toString()});
+      await tx.wait();
+    } catch (e) {
+      console.log(e);
+    }
     setBuyBtnString("Buy LOVE");
     const signerBalance = await signer.getBalance();
     setBalance(parseFloat(ethers.utils.formatEther(signerBalance)));
@@ -82,7 +86,7 @@ function App() {
               <a href="#100" onClick={(e) => setBuyAmount(balance*lovePerZen)}>100%</a>
               </div>
             </div>
-            <button onClick={buyLove}>{buyBtnString}</button>
+            <button onClick={buyLove} disabled={buyBtnString === "Buy LOVE" ? "" : "disabled"}>{buyBtnString}</button>
           </>
         :
           <>
