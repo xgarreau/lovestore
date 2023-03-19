@@ -66,35 +66,52 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>The LOVE store</h1>
-      <header className="App-header">
-        <img src="/5.jpg" className="App-logo" alt="logo" />
-        {isConnected === true ?
-          <>
-            <p>
-              Account: {account.substring(0, 6)+'...'+account.substring(account.length-4, account.length)}<br />
-              Balance: {balance}
-            </p>
-            <div className="inputDiv">
-              <div className="inputToken">LOVE</div>
-              <input type="text" value={buyAmount} onChange={(e) => setBuyAmount(e.target.value)} />
-              <div className="inputQties">
-              <a href="#25" onClick={(e) => setBuyAmount(balance*lovePerZen/4)}>25%</a>
-              <a href="#50" onClick={(e) => setBuyAmount(balance*lovePerZen/2)}>50%</a>
-              <a href="#75" onClick={(e) => setBuyAmount(balance*lovePerZen*3/4)}>75%</a>
-              <a href="#100" onClick={(e) => setBuyAmount(balance*lovePerZen)}>100%</a>
+    <>
+      <nav>
+        <ul>
+          <li>
+            <a href="https://lovefaucet.mescryptos.fr/">Faucet</a>
+          </li>
+          <li>💗</li>
+          <li>
+            <a href="https://lovestore.mescryptos.fr/">Buy</a>
+          </li>
+          <li>💗</li>
+          <li>
+            <a href="https://lovestaking.mescryptos.fr/">Stake</a>
+          </li>
+        </ul>
+      </nav>
+      <div className="App">
+        <h1>The LOVE store</h1>
+        <header className="App-header">
+          <img src="/5.jpg" className="App-logo" alt="logo" />
+          {isConnected === true ?
+            <>
+              <p>
+                Account: {account.substring(0, 6)+'...'+account.substring(account.length-4, account.length)}<br />
+                Balance: {balance}
+              </p>
+              <div className="inputDiv">
+                <div className="inputToken">LOVE</div>
+                <input type="text" value={buyAmount} onChange={(e) => setBuyAmount(e.target.value)} />
+                <div className="inputQties">
+                <a href="#25" onClick={(e) => setBuyAmount(balance*lovePerZen/4)}>25%</a>
+                <a href="#50" onClick={(e) => setBuyAmount(balance*lovePerZen/2)}>50%</a>
+                <a href="#75" onClick={(e) => setBuyAmount(balance*lovePerZen*3/4)}>75%</a>
+                <a href="#100" onClick={(e) => setBuyAmount(balance*lovePerZen)}>100%</a>
+                </div>
               </div>
-            </div>
-            <button onClick={buyLove} disabled={buyBtnString === "Buy LOVE" ? "" : "disabled"}>{buyBtnString}</button>
-          </>
-        :
-          <>
-            <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>
-          </>
-        }
-      </header>
-    </div>
+              <button onClick={buyLove} disabled={buyBtnString === "Buy LOVE" ? "" : "disabled"}>{buyBtnString}</button>
+            </>
+          :
+            <>
+              <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>
+            </>
+          }
+        </header>
+      </div>
+    </>
   );
 }
 
