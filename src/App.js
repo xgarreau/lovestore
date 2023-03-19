@@ -111,6 +111,7 @@ function App() {
           }
         </header>
       </div>
+      <footer>Made with 💗 on <a href="https://eon.horizen.io/docs/">HorizenEON Yuma testnet</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
     </>
   );
 }
