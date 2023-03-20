@@ -13,6 +13,7 @@ if (window.ethereum) {
 
 function App() {
   const [isConnected, setConnected] = useState(false);
+  const [isYuma, setIsYuma] = useState(true);
   const [buyBtnString, setBuyBtnString] = useState("Buy LOVE")
   const [account, setAccount] = useState('');
   const [balance, setBalance] = useState(0);
@@ -26,6 +27,10 @@ function App() {
     }
     try {
       const ethProvider = new ethers.providers.Web3Provider(window.ethereum);
+      
+      const currNetwork = await ethProvider.getNetwork();
+      setIsYuma(currNetwork.chainId.toString() === "1662");
+
       await ethProvider.send('eth_requestAccounts', []);
       const signer = await ethProvider.getSigner();
 
@@ -86,7 +91,7 @@ function App() {
         <h1>The LOVE store</h1>
         <header className="App-header">
           <img src="/5.jpg" className="App-logo" alt="logo" />
-          {isConnected === true ?
+          {isConnected === true && isYuma === true ?
             <>
               <p>
                 Account: {account.substring(0, 6)+'...'+account.substring(account.length-4, account.length)}<br />
@@ -106,12 +111,13 @@ function App() {
             </>
           :
             <>
-              <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>
+              {!isYuma && <div className="network-error">Please switch to Yuma network</div>}
+              {isYuma && !isConnected && <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>}
             </>
           }
         </header>
       </div>
-      <footer>Made with 💗 on <a href="https://eon.horizen.io/docs/">HorizenEON Yuma testnet</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
+      <footer>v1.0.0 - Made with 💗 on <a href="https://eon.horizen.io/docs/">HorizenEON Yuma testnet</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
     </>
   );
 }
