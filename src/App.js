@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
 import storeABI from "./contracts/storeABI.json";
-const STORE_ADDRESS = "0x20402132a7e60899c5cBB1a403bb4665F20b6aF1";
+const STORE_ADDRESS = "0xc50D4E9931CE973D35a17B25753dBc8F99c610Da";
 
 // Reload page if network is changed
 if (window.ethereum) {
@@ -13,7 +13,7 @@ if (window.ethereum) {
 
 function App() {
   const [isConnected, setConnected] = useState(false);
-  const [isYuma, setIsYuma] = useState(true);
+  const [isEon, setIsEon] = useState(true);
   const [buyBtnString, setBuyBtnString] = useState("Buy LOVE")
   const [account, setAccount] = useState('');
   const [balance, setBalance] = useState(0);
@@ -29,7 +29,7 @@ function App() {
       const ethProvider = new ethers.providers.Web3Provider(window.ethereum);
       
       const currNetwork = await ethProvider.getNetwork();
-      setIsYuma(currNetwork.chainId.toString() === "1662");
+      setIsEon(currNetwork.chainId.toString() === "7332");
 
       await ethProvider.send('eth_requestAccounts', []);
       const signer = await ethProvider.getSigner();
@@ -89,9 +89,10 @@ function App() {
       </nav>
       <div className="App">
         <h1>The LOVE store</h1>
+        <h2>💗 Now on EON !! 💗</h2>
         <header className="App-header">
           <img src="/5.jpg" className="App-logo" alt="logo" />
-          {isConnected === true && isYuma === true ?
+          {isConnected === true && isEon === true ?
             <>
               <p>
                 Account: {account.substring(0, 6)+'...'+account.substring(account.length-4, account.length)}<br />
@@ -111,15 +112,16 @@ function App() {
             </>
           :
             <>
-              {!isYuma && <div className="network-error">Please switch to Yuma network</div>}
-              {isYuma && !isConnected && <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>}
+              {!isEon && <div className="network-error">Please switch to Gobi network</div>}
+              {isEon && !isConnected && <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>}
             </>
           }
         </header>
       </div>
-      <footer>v1.0.0 - Made with 💗 on <a href="https://eon.horizen.io/docs/">HorizenEON Yuma testnet</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
+      <footer>v1.2.0 - Made with 💗 on <a href="https://eon.horizen.io/docs/">Horizen EON</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
     </>
   );
 }
 
 export default App;
+

@@ -14,9 +14,13 @@ footer {
 
 h1 {
   margin: 0;
-  padding: 0.67em;
+  padding-top: 0.67em;
 }
 
+h2 {
+  margin: 0;
+  margin-bottom: 0.67em;
+}
 .App {
   background-color: #000;
   text-align: center;
