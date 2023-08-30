@@ -112,13 +112,13 @@ function App() {
             </>
           :
             <>
-              {!isEon && <div className="network-error">Please switch to Gobi network</div>}
+              {!isEon && <div className="network-error">Please switch to Horizen EON network</div>}
               {isEon && !isConnected && <button className="connectButton" onClick={connectWallet}>Connect Wallet</button>}
             </>
           }
         </header>
       </div>
-      <footer>v1.2.0 - Made with 💗 on <a href="https://eon.horizen.io/docs/">Horizen EON</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
+      <footer>v1.2.1 - Made with 💗 on <a href="https://eon.horizen.io/docs/">Horizen EON</a> by <a href="https://twitter.com/xgarreau">xgarreau</a></footer>
     </>
   );
 }
